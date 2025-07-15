@@ -77,7 +77,9 @@ psql -U postgres -d progressadb -f init_db.sql
 cd ..
 python manage.py runserver
 ```
+### 8 Al ejecutar python manage.py runserver 
+La aplicación debe ejecutarse por defecto en el http://localhost:8000 o http://127.0.0.1:8000/
 
 ### 8. Usuario para pruebas
 username = demo
-password = demo1234
+password = demo1234.
