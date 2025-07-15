@@ -74,9 +74,10 @@ psql -U postgres -d progressadb -f init_db.sql
 
 ### 7. Ejecuta el servidor
 ```bash
+cd ..
 python manage.py runserver
 ```
 
 ### 8. Usuario para pruebas
 username = demo
-password = dema1234
+password = demo1234
