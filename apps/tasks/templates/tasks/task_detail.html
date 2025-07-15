@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="container">
+    <div style="
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;">
+        <div class="col-md-4">
+            <h1>{{task.title}}</h1>
+
+            {{error}}
+
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-primary">Actualizar</button>
+            </form>      
+            <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#confirmarModal{{ task.id }}">
+                Eliminar
+            </button>
+            {% include 'dialog_confirmation_action.html' %}
+        </div>
+        <div>
+            {% if task.rick_and_morty_character_id %}
+                <hr>
+                <h5>Personaje asociado</h5>
+                <p>{{ character.name }}</p>
+                <img src="{{ character.image }}" alt="{{ character.name }}" style="width: 200px; height: 200px; object-fit: cover;">
+
+                <!-- Botón para desasociar -->
+                <form method="POST" action="{% url 'disassociate_character' task.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="remove_character" value="1">
+                    <button class="btn btn-danger mt-2" type="submit">Desasociar personaje</button>
+                </form>
+            {% else %}
+                <hr>
+                <h5>Sin personaje asociado</h5>
+                <p></p>
+                <img src="https://static.vecteezy.com/system/resources/previews/022/059/000/non_2x/no-image-available-icon-vector.jpg" alt="Sin personaje" style="width: 200px; height: 200px; object-fit: cover;">
+            {% endif %}
+        </div>
+    </div>
+</main>
+    
+
+{% endblock %}

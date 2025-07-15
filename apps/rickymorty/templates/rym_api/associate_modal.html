@@ -1,0 +1,28 @@
+<div class="modal fade" id="asociarModal{{ character.id }}" tabindex="-1" aria-labelledby="asociarModalLabel{{ character.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="{% url 'associate_character' character.id %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="asociarModalLabel{{ character.id }}">Asociar Personaje</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Deseas asociar a <strong>{{ character.name }}</strong> a una tarea?</p>
+                    <label for="taskSelect{{ character.id }}" class="form-label">Selecciona una tarea</label>
+                    <select class="form-select" id="taskSelect{{ character.id }}" name="task_id" required>
+                        <option value="" selected disabled>-- Elige una tarea --</option>
+                        {% comment %} Iteramos para mostrar las tareas disponibles, aquellas que no tienen un personaje asociado {% endcomment %}
+                        {% for task in tasks %}
+                        <option value="{{ task.id }}">{{ task.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Asociar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

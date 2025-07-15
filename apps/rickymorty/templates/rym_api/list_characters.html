@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h1 class="text-center display-4 py-4">Personajes Rick & Morty</h1>
+            {% comment %} Creamos una tabla para poder listar los personajes, los cuales vienen desde la API externa {% endcomment %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover align-middle text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                            <th>Especie</th>
+                            <th>Estado</th>
+                            <th>Asociar a tarea</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% comment %} Iteramos los personajes para ir renderizando cada uno de ellos en la tabla {% endcomment %}
+                        {% for character in characters %}
+                        <tr>
+                            <td>{{ character.name }}</td>
+                            <td>
+                                <img src="{{ character.image }}" alt="{{ character.name }}" width="80" height="80" class="rounded-circle">
+                            </td>
+                            <td>{{ character.species }}</td>
+                            <td>
+                                {% if character.status == "Alive" %}
+                                    <span class="badge bg-success">Vivo</span>
+                                {% elif character.status == "Dead" %}
+                                    <span class="badge bg-danger">Muerto</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">Desconocido</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asociarModal{{ character.id }}">
+                                    Asociar
+                                </button>
+                            </td>
+                        </tr>
+                        {% include 'rym_api/associate_modal.html' %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% comment %} Creamos la paginación para que por cada pagina nos muestre los 20 personas que por defecto envia la API {% endcomment %}
+            <nav class="d-flex justify-content-center mt-4">
+                <ul class="pagination">
+                    {% if info.prev %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ current_page|add:"-1" }}">Anterior</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">Anterior</span>
+                        </li>
+                    {% endif %}
+
+                    <li class="page-item active">
+                        <span class="page-link">{{ current_page }}</span>
+                    </li>
+
+                    {% if info.next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ current_page|add:"1" }}">Siguiente</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">Siguiente</span>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

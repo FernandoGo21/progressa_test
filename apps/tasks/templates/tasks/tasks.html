@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center display-3 py-5">Tareas</h1>
+            <ul class="list-group">
+                {% for item  in tasks_with_character %}
+                <a class="list-group-item" href="{% url 'task_detail' item.task.id %}">
+                    <div class="d-flex" style="flex-direction:row; justify-content: space-between;">
+                        <div>
+                            <strong>{{item.task.title}}</strong>
+                            <p class="mb-0">{{ item.task.description }}</p>
+                            {% if item.task.state == "COMPLETED" %}
+                                <span class="badge bg-success">Completado</span>
+                            {% elif item.task.state == "IN_PROGRESS" %}
+                                <span class="badge bg-warning">En progreso</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Pendiente</span>
+                            {% endif %}
+
+                            {% if item.character %}
+                                <strong>Personaje asociado:</strong> {{ item.character.name }}
+                            {% endif %}
+                        </div>
+                        {% if item.character %}
+                            <img src="{{ item.character.image }}" alt="{{ item.character.name }}" style="width: 64px; height: 64px; object-fit: cover;">
+                        {% else %}
+                            <p class="text-muted">Sin personaje asociado</p>
+                        {% endif %}
+                    </div>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
+{% endblock %}
