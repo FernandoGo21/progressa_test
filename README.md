@@ -44,16 +44,11 @@ pip install -r requirements.txt
 ```
 
 ### 4. Creación base de datos
-En su administrador de postgreSQL cree la siguiente base de datos:
+En su administrador de postgreSQL cree la base de datos progressadb o ejecute el siguinte comando en powershell:
 ```bash
-createdb progressadb
+createdb -U postgres progressadb
 ```
-o ejecute el siguiente comando
-```bash
-cd scripts/
-psql -U postgres -d progressadb -f create_db.sql
-cd ..
-```
+
 ### 5. Configuración credenciales base de datos
 En progressa_test/settings.py, configura tu base de datos en la sección DATABASES, por defecto viene con los siguientes ajustes:
 ```python
