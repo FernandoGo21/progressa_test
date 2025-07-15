@@ -77,58 +77,6 @@ psql -U postgres -d progressadb -f init_db.sql
 python manage.py runserver
 ```
 
-### 8. Crear usuario    
-Es necesario crear un usuario
-
-## 🚀 Estructura del proyecto
-task_manager/
-├── manage.py
-├── requirements.txt
-├── README.md
-├── scripts/
-│   └── init_db.sql         # Script .sql para datos de prueba
-├── progressa_test/           # Configuración del proyecto Django
-│   ├── __init__.py
-│   ├── settings.py
-│   ├── urls.py
-│   ├── wsgi.py
-│   └── asgi.py
-├── apps/
-│   ├── users/
-│   │   ├── migrations/
-│   │   ├── templates/users/
-│   │   │   ├── home.html
-│   │   │   ├── login.html
-│   │   │   └── signup.html
-│   │   ├── __init__.py
-│   │   ├── admin.py
-│   │   ├── apps.py
-│   │   ├── models.py
-│   │   ├── tests.py
-│   │   ├── views.py
-│   ├── tasks/
-│   │   ├── migrations/
-│   │   ├── templates/tasks/
-│   │   │   ├── create_tasks.html
-│   │   │   ├── tasks.html
-│   │   │   └── task_detail.html
-│   │   ├── __init__.py
-│   │   ├── admin.py
-│   │   ├── apps.py
-│   │   ├── models.py
-│   │   ├── tests.py
-│   │   ├── views.py
-│   │   └── forms.py
-│   ├── rickmorty/
-│   │   ├── templates/rickmorty/
-│   │   │   └── characters.html
-│   │   ├── static/rickmorty/
-│   │   ├── __init__.py
-│   │   ├── admin.py
-│   │   ├── apps.py
-│   │   ├── models.py
-│   │   ├── tests.py
-│   │   ├── views.py
-└── templates/
-    ├── dialog_confirmation_action.html
-    └── base.html           # Template base para heredar
+### 8. Usuario para pruebas
+username = demo
+password = dema1234
