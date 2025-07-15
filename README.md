@@ -48,6 +48,12 @@ En su administrador de postgreSQL cree la siguiente base de datos:
 ```bash
 createdb progressadb
 ```
+o ejecute el siguiente comando
+```bash
+cd scripts/
+psql -U postgres -d progressadb -f create_db.sql
+cd ..
+```
 ### 5. Configuración credenciales base de datos
 En progressa_test/settings.py, configura tu base de datos en la sección DATABASES, por defecto viene con los siguientes ajustes:
 ```python
